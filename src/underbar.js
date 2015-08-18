@@ -98,7 +98,7 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    var result = collection;
+    var result = collection.slice();
     _.each(_.filter(collection,test), function(element){
         //var indexToRemove = rejects.indexOf(element);
         var indexToRemove = _.indexOf(result, element);
@@ -110,6 +110,13 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var result = [];
+    _.each(array, function(element){
+      if(_.indexOf(result,element)=== -1){
+          result.push(element);
+      }
+    });
+    return result;
   };
 
 
