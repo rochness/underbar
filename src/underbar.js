@@ -98,8 +98,7 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    //var result = collection;
-    var result = collection.slice();
+    var result = collection;
     _.each(_.filter(collection,test), function(element){
         //var indexToRemove = rejects.indexOf(element);
         var indexToRemove = _.indexOf(result, element);
