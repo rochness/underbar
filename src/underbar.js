@@ -100,7 +100,6 @@
     // copying code in and modifying it
     var result = collection.slice();
     _.each(_.filter(collection,test), function(element){
-        //var indexToRemove = rejects.indexOf(element);
         var indexToRemove = _.indexOf(result, element);
         result.splice(indexToRemove,1);
     });
@@ -171,6 +170,21 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+      var result;
+  
+      if (arguments.length <3){
+        result = collection[0];
+        _.each(collection.slice(1,collection.length), function(element){
+        result = iterator(result,element);
+        });
+      }
+      else{
+        result = accumulator;
+        _.each(collection, function(element){
+        result = iterator(result,element);
+        });
+      }
+      return result;
   };
 
   // Determine if the array or object contains a given value (using `===`).
