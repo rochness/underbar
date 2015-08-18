@@ -7,6 +7,7 @@
   // seem very useful, but remember it--if a function needs to provide an
   // iterator when the user does not pass one in, this will be handy.
   _.identity = function(val) {
+    return val;
   };
 
   /**
@@ -97,6 +98,14 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    var result = collection;
+    _.each(_.filter(collection,test), function(element){
+        //var indexToRemove = rejects.indexOf(element);
+        var indexToRemove = _.indexOf(result, element);
+        result.splice(indexToRemove,1);
+    });
+    return result;
+
   };
 
   // Produce a duplicate-free version of the array.
