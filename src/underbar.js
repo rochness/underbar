@@ -223,7 +223,27 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-    
+    if(collection.length === 0 || Object.keys(collection).length === 0){
+      return false;
+    }
+
+    if(arguments.length === 1){
+      var iterator = function (element){return element};
+    }
+
+    if(_.every(collection, iterator) === true){
+      return true;
+    }
+
+    var iterator2 = function(element){
+      return !iterator(element);
+    }     
+
+    if(_.every(collection, iterator2)){
+      return false;
+    }
+
+    return true;
   };
 
 
