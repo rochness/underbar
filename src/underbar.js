@@ -332,6 +332,24 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+
+	var argumentsCalledList = {};
+  	return function(){
+  		var result;
+  		var args = [];
+  		for(var i = 0; i<arguments.length; i++){
+  			args.push(arguments[i]);
+  		}
+  		var keyToSearch = args.toString();
+  		if(!argumentsCalledList.hasOwnProperty(keyToSearch)){
+  			result = func.apply(this, arguments);
+  			argumentsCalledList[keyToSearch] = result;
+  		}
+  		else{
+  			result = argumentsCalledList[keyToSearch];
+  		}
+  		return result;
+  	};
   };
 
   // Delays a function for the given number of milliseconds, and then calls
