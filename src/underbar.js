@@ -364,6 +364,7 @@
   			funcArgs.push(arguments[i]);
   		}
   		setTimeout(function(){return func.apply(null, funcArgs);}, wait);
+
   };
 
 
@@ -378,6 +379,17 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+  	var arrayCopy = array.slice(0,array.length);
+  	var result = [];
+  	//for(var i = 0; i <= arrayCopy.length; i++){
+  	var counter = arrayCopy.length;
+  	while(counter !== 0){
+  		var pos = Math.floor((Math.random()*(counter)));
+  		result.push(arrayCopy[pos]);
+  		arrayCopy.splice(pos, 1);
+  		counter--;
+  	}
+  	return result;
   };
 
 
